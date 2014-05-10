@@ -22,13 +22,13 @@
 	   </property>
 	   <property name="hibernateProperties">
 	     <props>
-	       <prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
+	       <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
 	       <prop key="hibernate.hbm2ddl.auto">update</prop>
 	     </props>
 	   </property>
  
    <!--指明使用标注的实体类-->
-   <property name="packagesToScan" value="gdglc.oa.entity" /> 
+   <!-- property name="packagesToScan" value="gdglc.oa.entity" /--> 
    
    </bean>
 	
