@@ -14,7 +14,7 @@
     http://www.springframework.org/schema/cache/spring-cache-3.1.xsd"
 	default-lazy-init="false" default-autowire="byName">
 	<context:annotation-config/>
-	<context:component-scan base-package="go.actions" />
+	<context:component-scan base-package="com" />
 	
 	
 </beans>
