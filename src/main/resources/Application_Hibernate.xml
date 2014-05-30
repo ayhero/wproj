@@ -30,7 +30,7 @@
    <!--指明使用标注的实体类-->
     <property name="packagesToScan">  
        <list>  
-        <value>com.entitys</value><!-- 扫描实体类，也就是平时所说的model -->  
+        <value>com.entitys.face</value><!-- 扫描实体类，也就是平时所说的model -->  
        </list>  
    </property> 
    
