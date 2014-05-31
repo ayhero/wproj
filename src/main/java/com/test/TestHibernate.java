@@ -13,6 +13,7 @@ import com.dao.imp.TestDao;
 import com.entitys.Resc;
 import com.entitys.Role;
 import com.entitys.face.Card;
+import com.entitys.face.Employee;
 import com.entitys.face.Financial_Income;
 import com.entitys.face.Service;
 import com.entitys.face.User;
@@ -39,13 +40,16 @@ public class TestHibernate {
 		System.out.println(service.getId());
 		System.out.println(service.getType().getId());
 		System.out.println(service.getType().getGroup().getTypes().size());
-		*/
+		
 		Financial_Income fi=(Financial_Income) td.getObject(new Financial_Income());
 		System.out.println(fi.getId());
 		System.out.println(fi.getConsume().getId());
 		System.out.println(fi.getEmployee().getId());
 		System.out.println(fi.getType().getId());
-		
+		*/
+		Employee emp=(Employee) td.getObject(new Employee());
+		System.out.println(emp.getId());
+		System.out.println(emp.getDepartment().getEmployees().size());
 	}
 
 }

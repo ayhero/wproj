@@ -27,7 +27,7 @@ public class Consume{
 	private String mark;
 	private int status;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="card")
 	private Card card;
 	

@@ -265,12 +265,14 @@ public class GenEntityMysql {
 	public static void main(String[] args) {
 		
 		GenEntityMysql gem=new GenEntityMysql("face");
+		gem.generate("department_employee");
+		/**
 		List<String> dbs=gem.getTables();
 		for(String tableName : dbs){
 			GenEntityMysql gems=new GenEntityMysql("face");
 			gems.generate(tableName);
 		}
-		
+		*/
 	}
 
 }

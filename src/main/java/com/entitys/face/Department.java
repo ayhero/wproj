@@ -1,14 +1,28 @@
 package com.entitys.face;
 
+import java.util.Set;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
    /**
     * department 实体类
     * Fri May 30 23:41:45 CST 2014 memego
     */ 
 
-
+@Entity
 public class Department{
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY) 
 	private long id;
 	private String name;
+	
+	@OneToMany(mappedBy="department")
+	private Set<Employee> employees;
+	
 	public void setId(long id){
 	this.id=id;
 	}
@@ -20,6 +34,12 @@ public class Department{
 	}
 	public String getName(){
 		return name;
+	}
+	public Set<Employee> getEmployees() {
+		return employees;
+	}
+	public void setEmployees(Set<Employee> employees) {
+		this.employees = employees;
 	}
 }
 

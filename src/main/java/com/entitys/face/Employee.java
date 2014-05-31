@@ -1,9 +1,13 @@
 package com.entitys.face;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 
    /**
     * employee 实体类
@@ -20,6 +24,14 @@ public class Employee{
 	private int sex;
 	private String phone;
 	private String address;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinTable(name = "department_employee",
+        joinColumns = @JoinColumn(name="employee"),
+        inverseJoinColumns = @JoinColumn(name="department")
+    )
+	private Department department;
+	
 	
 	public void setId(long id){
 	this.id=id;
@@ -56,6 +68,12 @@ public class Employee{
 	}
 	public String getAddress(){
 		return address;
+	}
+	public Department getDepartment() {
+		return department;
+	}
+	public void setDepartment(Department department) {
+		this.department = department;
 	}
 }
 

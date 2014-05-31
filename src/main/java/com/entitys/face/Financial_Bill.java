@@ -22,7 +22,10 @@ public class Financial_Bill{
 	private long id;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="group")
+	@JoinTable(name = "financial_income_bill",
+        joinColumns = @JoinColumn(name="financial_bill"),
+        inverseJoinColumns = @JoinColumn(name="financial_income")
+    )
 	private Financial_Income financial_Income;
 	
 	@OneToOne(cascade = CascadeType.ALL)
