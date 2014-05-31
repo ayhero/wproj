@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
    /**
@@ -20,7 +22,11 @@ public class Card{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)  
 	private long id;
-	private int type;
+
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="type")
+	private Type type;
+	
 	private Date activedate;
 	private double money;
 	
@@ -28,18 +34,18 @@ public class Card{
     @JoinColumn(name="employee")
 	private Employee employee;
 	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinTable(name = "user_card_info",
+        joinColumns = @JoinColumn(name="card"),
+        inverseJoinColumns = @JoinColumn(name="user")
+    )
+	private User user;
 	
 	public void setId(long id){
 	this.id=id;
 	}
 	public long getId(){
 		return id;
-	}
-	public void setType(int type){
-	this.type=type;
-	}
-	public int getType(){
-		return type;
 	}
 	public void setActivedate(Date activedate){
 	this.activedate=activedate;
@@ -58,6 +64,18 @@ public class Card{
 	}
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	public Type getType() {
+		return type;
+	}
+	public void setType(Type type) {
+		this.type = type;
 	}
 }
 

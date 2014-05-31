@@ -22,5 +22,12 @@ public class TestDao {
 		return card;
 	}
 	
+	public Object getObject(Object c){
+		Session session=this.sessionFactory.openSession();
+		Transaction tx=session.beginTransaction();
+		Object obj= session.load(c.getClass(), new Long(1));
+		return obj;
+	}
+	
 	
 }

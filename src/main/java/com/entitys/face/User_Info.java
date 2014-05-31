@@ -1,13 +1,28 @@
 package com.entitys.face;
 
+import java.util.Set;
+
+import javax.persistence.*;
+import org.hibernate.annotations.Parameter;
+import org.hibernate.annotations.GenericGenerator;
+
+
    /**
     * user_info 实体类
     * Fri May 30 23:41:45 CST 2014 memego
     */ 
 
-
-public class User_info{
-	private long user;
+@Entity
+public class User_Info{
+	@Id
+    @GeneratedValue(generator="pkUser_Info")
+    @GenericGenerator(name="pkUser_Info", strategy="foreign",parameters=@Parameter(name="property",value="user"))
+	private long id;
+	
+	@OneToOne(mappedBy = "user_Info")
+	private User user;
+	
+	
 	private int skin;
 	private double height;
 	private double weight;
@@ -20,12 +35,7 @@ public class User_info{
 	private int eatting;
 	private int nature;
 	private String postCode;
-	public void setUser(long user){
-	this.user=user;
-	}
-	public long getUser(){
-		return user;
-	}
+	
 	public void setSkin(int skin){
 	this.skin=skin;
 	}
@@ -97,6 +107,18 @@ public class User_info{
 	}
 	public String getPostCode(){
 		return postCode;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
+	public User getUser() {
+		return user;
 	}
 }
 
