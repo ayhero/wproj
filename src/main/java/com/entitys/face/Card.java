@@ -3,6 +3,7 @@ import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,7 +22,7 @@ import javax.persistence.OneToOne;
 public class Card{
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)  
+	@GeneratedValue(strategy=GenerationType.AUTO)  
 	private long id;
 
 	@OneToOne(cascade = CascadeType.ALL)
@@ -31,11 +32,11 @@ public class Card{
 	private Date activedate;
 	private double money;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
     @JoinColumn(name="employee")
 	private Employee employee;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinTable(name = "user_card_info",
         joinColumns = @JoinColumn(name="card"),
         inverseJoinColumns = @JoinColumn(name="user")

@@ -1,5 +1,7 @@
 package com.entitys.face;
 
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
    /**
     * employee 实体类
@@ -17,7 +20,7 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Employee{
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY) 
+	@GeneratedValue(strategy=GenerationType.AUTO) 
 	private long id;
 	private String name;
 	private long identification;
@@ -25,12 +28,15 @@ public class Employee{
 	private String phone;
 	private String address;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinTable(name = "department_employee",
-        joinColumns = @JoinColumn(name="employee"),
-        inverseJoinColumns = @JoinColumn(name="department")
-    )
-	private Department department;
+	@OneToMany(mappedBy="employee")
+	private Set<Department_Employee> department;
+	
+
+	@OneToMany(mappedBy="employee")
+	private Set<Product_Orderlist> product_Orderlist;
+	
+	@OneToMany(mappedBy="employee")
+	private Set<Service_Orderlist> service_Orderlist;
 	
 	
 	public void setId(long id){
@@ -69,11 +75,23 @@ public class Employee{
 	public String getAddress(){
 		return address;
 	}
-	public Department getDepartment() {
+	public Set<Department_Employee> getDepartment() {
 		return department;
 	}
-	public void setDepartment(Department department) {
+	public void setDepartment(Set<Department_Employee> department) {
 		this.department = department;
+	}
+	public Set<Product_Orderlist> getProduct_Orderlist() {
+		return product_Orderlist;
+	}
+	public void setProduct_Orderlist(Set<Product_Orderlist> product_Orderlist) {
+		this.product_Orderlist = product_Orderlist;
+	}
+	public Set<Service_Orderlist> getService_Orderlist() {
+		return service_Orderlist;
+	}
+	public void setService_Orderlist(Set<Service_Orderlist> service_Orderlist) {
+		this.service_Orderlist = service_Orderlist;
 	}
 }
 

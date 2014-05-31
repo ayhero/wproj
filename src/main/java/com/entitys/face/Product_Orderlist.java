@@ -10,18 +10,19 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
    /**
-    * in_product 实体类
+    * product_orderlist 实体类
     * Fri May 30 23:41:45 CST 2014 memego
     */ 
 
 @Entity
-public class In_product{
-	
+public class Product_Orderlist{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO) 
 	private long id;
-	private String supplier;
-	private Date datetime;
+
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="consume")
+	private Consume consume;
 	
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="product")
@@ -31,44 +32,37 @@ public class In_product{
     @JoinColumn(name="employee")
 	private Employee employee;
 	
-	private int number;
-	private double money;
-	private long mark;
-	public void setId(long id){
-	this.id=id;
-	}
-	public long getId(){
-		return id;
-	}
-	public void setSupplier(String supplier){
-	this.supplier=supplier;
-	}
-	public String getSupplier(){
-		return supplier;
-	}
+	
+	private Date datetime;
+	private int status;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="type")
+	private Type type;
+	
 	public void setDatetime(Date datetime){
 	this.datetime=datetime;
 	}
 	public Date getDatetime(){
 		return datetime;
 	}
-	public void setNumber(int number){
-	this.number=number;
+	public void setStatus(int status){
+	this.status=status;
 	}
-	public int getNumber(){
-		return number;
+	public int getStatus(){
+		return status;
 	}
-	public void setMoney(double money){
-	this.money=money;
+	public long getId() {
+		return id;
 	}
-	public double getMoney(){
-		return money;
+	public void setId(long id) {
+		this.id = id;
 	}
-	public void setMark(long mark){
-	this.mark=mark;
+	public Consume getConsume() {
+		return consume;
 	}
-	public long getMark(){
-		return mark;
+	public void setConsume(Consume consume) {
+		this.consume = consume;
 	}
 	public Product getProduct() {
 		return product;
@@ -81,6 +75,12 @@ public class In_product{
 	}
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
+	}
+	public Type getType() {
+		return type;
+	}
+	public void setType(Type type) {
+		this.type = type;
 	}
 }
 

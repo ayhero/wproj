@@ -1,9 +1,12 @@
 package com.entitys.face;
 
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
    /**
     * 职位表实体
@@ -13,12 +16,13 @@ import javax.persistence.Id;
 @Entity
 public class Post{
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY) 
+	@GeneratedValue(strategy=GenerationType.AUTO) 
 	private long id;
 	
 	private String name;
 	
-	
+	@OneToMany(mappedBy="post")
+	private Set<Department_Employee> department_employee;
 	
 	public void setId(long id){
 	this.id=id;
@@ -31,6 +35,12 @@ public class Post{
 	}
 	public String getName(){
 		return name;
+	}
+	public Set<Department_Employee> getDepartment_employee() {
+		return department_employee;
+	}
+	public void setDepartment_employee(Set<Department_Employee> department_employee) {
+		this.department_employee = department_employee;
 	}
 }
 

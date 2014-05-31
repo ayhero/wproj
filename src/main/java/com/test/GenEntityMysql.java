@@ -265,7 +265,7 @@ public class GenEntityMysql {
 	public static void main(String[] args) {
 		
 		GenEntityMysql gem=new GenEntityMysql("face");
-		gem.generate("department_employee");
+		gem.generate("service_orderlist");
 		/**
 		List<String> dbs=gem.getTables();
 		for(String tableName : dbs){

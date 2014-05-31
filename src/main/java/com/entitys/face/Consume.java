@@ -1,5 +1,6 @@
 package com.entitys.face;
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -8,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
    /**
@@ -18,7 +20,7 @@ import javax.persistence.OneToOne;
 @Entity
 public class Consume{
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY) 
+	@GeneratedValue(strategy=GenerationType.AUTO) 
 	private long id;
 	private double payables;
 	private Date datetime;
@@ -30,6 +32,12 @@ public class Consume{
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="card")
 	private Card card;
+
+	@OneToMany(mappedBy="consume")
+	private Set<Product_Orderlist> product_Orderlist;
+	
+	@OneToMany(mappedBy="service")
+	private Set<Service_Orderlist> service_Orderlist;
 	
 	public Card getCard() {
 		return card;
@@ -78,6 +86,18 @@ public class Consume{
 	}
 	public int getStatus(){
 		return status;
+	}
+	public Set<Product_Orderlist> getProduct_Orderlist() {
+		return product_Orderlist;
+	}
+	public void setProduct_Orderlist(Set<Product_Orderlist> product_Orderlist) {
+		this.product_Orderlist = product_Orderlist;
+	}
+	public Set<Service_Orderlist> getService_Orderlist() {
+		return service_Orderlist;
+	}
+	public void setService_Orderlist(Set<Service_Orderlist> service_Orderlist) {
+		this.service_Orderlist = service_Orderlist;
 	}
 }
 

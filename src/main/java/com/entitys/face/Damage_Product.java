@@ -10,18 +10,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
    /**
-    * in_product 实体类
-    * Fri May 30 23:41:45 CST 2014 memego
+    * damage_product 实体类
+    * Fri May 30 23:41:44 CST 2014 memego
     */ 
 
 @Entity
-public class In_product{
+public class Damage_Product{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO) 
 	private long id;
-	private String supplier;
-	private Date datetime;
 	
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="product")
@@ -31,21 +29,14 @@ public class In_product{
     @JoinColumn(name="employee")
 	private Employee employee;
 	
+	private Date datetime;
 	private int number;
-	private double money;
-	private long mark;
-	public void setId(long id){
-	this.id=id;
-	}
-	public long getId(){
-		return id;
-	}
-	public void setSupplier(String supplier){
-	this.supplier=supplier;
-	}
-	public String getSupplier(){
-		return supplier;
-	}
+	private String mark;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="type")
+	private Type type;
+	
 	public void setDatetime(Date datetime){
 	this.datetime=datetime;
 	}
@@ -58,16 +49,10 @@ public class In_product{
 	public int getNumber(){
 		return number;
 	}
-	public void setMoney(double money){
-	this.money=money;
-	}
-	public double getMoney(){
-		return money;
-	}
-	public void setMark(long mark){
+	public void setMark(String mark){
 	this.mark=mark;
 	}
-	public long getMark(){
+	public String getMark(){
 		return mark;
 	}
 	public Product getProduct() {
@@ -81,6 +66,12 @@ public class In_product{
 	}
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
+	}
+	public Type getType() {
+		return type;
+	}
+	public void setType(Type type) {
+		this.type = type;
 	}
 }
 

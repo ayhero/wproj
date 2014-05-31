@@ -1,5 +1,7 @@
 package com.entitys.face;
 
+import java.util.Set;
+
 import javax.persistence.*;
 
    /**
@@ -11,7 +13,7 @@ import javax.persistence.*;
 public class Product{
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY) 
+	@GeneratedValue(strategy=GenerationType.AUTO) 
 	private long id;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
@@ -22,6 +24,13 @@ public class Product{
 	private int number;
 	private double in_price;
 	private String mark;
+	
+	@OneToMany(mappedBy="product")
+	private Set<Product_Orderlist> orderlist;
+	
+	@OneToMany(mappedBy="product")
+	private Set<Damage_Product> damage_Products;
+	
 	public void setId(long id){
 	this.id=id;
 	}
@@ -57,6 +66,18 @@ public class Product{
 	}
 	public void setType(Type type) {
 		this.type = type;
+	}
+	public Set<Damage_Product> getDamage_Products() {
+		return damage_Products;
+	}
+	public void setDamage_Products(Set<Damage_Product> damage_Products) {
+		this.damage_Products = damage_Products;
+	}
+	public Set<Product_Orderlist> getOrderlist() {
+		return orderlist;
+	}
+	public void setOrderlist(Set<Product_Orderlist> orderlist) {
+		this.orderlist = orderlist;
 	}
 }
 

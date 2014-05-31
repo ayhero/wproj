@@ -1,5 +1,7 @@
 package com.entitys.face;
 
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
    /**
@@ -17,16 +20,20 @@ import javax.persistence.OneToOne;
 @Entity
 public class Service{
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)  
+	@GeneratedValue(strategy=GenerationType.AUTO)  
 	private long id;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="type")
 	private Type type;
+	
+	@OneToMany(mappedBy="service")
+	private Set<Service_Orderlist> orderlists;
 	
 	private double money;
 	private double discount;
 	private String mark;
+	
 	public void setId(long id){
 	this.id=id;
 	}
@@ -56,6 +63,12 @@ public class Service{
 	}
 	public void setType(Type type) {
 		this.type = type;
+	}
+	public Set<Service_Orderlist> getOrderlists() {
+		return orderlists;
+	}
+	public void setOrderlists(Set<Service_Orderlist> orderlists) {
+		this.orderlists = orderlists;
 	}
 }
 

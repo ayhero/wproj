@@ -18,7 +18,7 @@ import javax.persistence.OneToOne;
 @Entity
 public class Financial_Bill{
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)  
+	@GeneratedValue(strategy=GenerationType.AUTO)  
 	private long id;
 	
 	@ManyToOne(cascade = CascadeType.ALL)

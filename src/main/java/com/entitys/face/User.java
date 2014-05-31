@@ -4,6 +4,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,6 +13,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.LazyCollection;
 
    /**
     * user 实体类
@@ -22,8 +26,9 @@ import javax.persistence.PrimaryKeyJoinColumn;
 public class User{	
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY) 
+	@GeneratedValue(strategy=GenerationType.AUTO) 
 	private long id;
+	
 	private String name;
 	private String Identification;
 	private String phone1;
@@ -31,7 +36,7 @@ public class User{
 	private String phone3;
 	private String email;
 	
-	@OneToOne(cascade = CascadeType.ALL) 
+	@OneToOne
 	@PrimaryKeyJoinColumn
 	private User_Info user_Info;
 	
